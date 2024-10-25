@@ -7,6 +7,8 @@
     <arg name="node_start_delay" default="0.2" />  
     <arg name="node_start_delay_ecat" default="0.3" />  
     <arg name="avatar_mode" default="false" />  
+    
+    <rosparam file="$(find tocabi_controller)/config/logger_settings.yaml" />
 
     <group if="$(arg hand)">
         <param name="tocabi_controller/urdf_path" type="string" value="$(find tocabi_description)/robots/dyros_tocabi_0714_hand.urdf"/>
@@ -20,6 +22,7 @@
     <param name="tocabi_controller/avatar_mode" value="$(arg avatar_mode)"/>
 
     <node name="tocabi_controller_shm_reset" pkg="tocabi_controller" type="shm_reset" output="screen"/>
+    <!-- <rosparam command="load" file="$(find tocabi_cc)/config/MPCgain.yaml"  ns="/tocabi_controller"/> -->
 
 
     <node name="tocabi_controller" pkg="tocabi_controller" type="tocabi_controller" output="screen" respawn="false" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
